@@ -8,21 +8,17 @@ import { ProductService } from '../shared/product.service';
   styleUrls: ['./product-listings.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  products: any
-  
+  products: any;
+
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.products = this.productService.getProducts()
-
     const productsObservable = this.productService.getProducts()
     productsObservable.subscribe(
-      (data) => {
+      (data) => { 
         this.products = data
       },
-      (err) => {
-        // console.error('something wrong occurred: ' + err)
-      }
+      (err) => { console.error('次のエラーが発生しました: ' + err) }
     )
   }
 }
